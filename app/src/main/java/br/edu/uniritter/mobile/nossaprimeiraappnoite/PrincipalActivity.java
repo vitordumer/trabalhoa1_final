@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -40,9 +41,14 @@ public class PrincipalActivity extends AppCompatActivity {
 
         EditText editNome = (EditText)findViewById(R.id.editTextTextPersonName);
         intent.putExtra("nome",editNome.getText().toString());
+        EditText editID = (EditText) findViewById(R.id.editTextTextPassword);
+        intent.putExtra("id",editID.getText().toString());
 
         // lança intent para o SO chamar a activity
-        startActivity(intent);
+         if (intent.getStringExtra("nome").equals(intent.getStringExtra("id")))
+            startActivity(intent);
+         else
+             Toast.makeText(this,"Senha incorreta",Toast.LENGTH_LONG).show();
 
     }
 }
